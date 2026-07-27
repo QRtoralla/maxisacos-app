@@ -1,9 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
 <head>
-<title>Maxisacos</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Control de Maxisacos</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Librería para leer códigos QR -->
+    <script src="https://unpkg.com/html5-qrcode" defer></script>
+
+    <!-- Nuestro JavaScript -->
+    <script src="script.js" defer></script>
+
 </head>
+
 <body>
-<h1>Maxisacos funcionando</h1>
+
+    <main class="contenedor">
+
+        <header class="encabezado">
+
+            <h1>CONTROL DE MAXISACOS</h1>
+
+            <p class="subtitulo">
+                Escanee un código QR o ingrese el ID manualmente.
+            </p>
+
+        </header>
+
+        <section class="panel">
+
+            <label for="idMaxisaco">
+                ID del Maxisaco
+            </label>
+
+            <input
+                type="text"
+                id="idMaxisaco"
+                placeholder="Ejemplo: MS0001"
+                autocomplete="off">
+
+            <div class="botones">
+
+                <button id="btnRegistrar">
+                    Registrar
+                </button>
+
+                <button id="btnEscanear">
+                    📷 Escanear QR
+                </button>
+
+            </div>
+
+        </section>
+
+        <section class="scanner">
+
+            <div id="contenedorScanner"></div>
+
+        </section>
+
+        <section class="estado">
+
+            <div id="mensajeEstado"></div>
+
+        </section>
+
+    </main>
+
 </body>
+
 </html>
