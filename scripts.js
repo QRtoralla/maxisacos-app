@@ -299,31 +299,35 @@ function iniciarScanner() {
 
     scannerQR.start(
 
-        {
+    {
 
-            facingMode: "environment"
+        facingMode: "environment"
 
-        },
+    },
 
-        {
+    {
 
-            fps: CONFIG.FPS,
+        fps: CONFIG.FPS,
 
-            qrbox: {
+        qrbox: {
 
-                width: CONFIG.QRBOX,
+            width: CONFIG.QRBOX,
 
-                height: CONFIG.QRBOX
+            height: CONFIG.QRBOX
 
-            }
+        }
 
-        },
+    },
 
-        codigoDetectado,
+    function (decodedText, decodedResult) {
 
-        ignorarErroresScanner
+        codigoDetectado(decodedText);
 
-    )
+    },
+
+    ignorarErroresScanner
+
+)
 
     .catch(function (error) {
 
@@ -350,11 +354,13 @@ function iniciarScanner() {
 
 function codigoDetectado(idMaxisaco) {
 
+    idMaxisaco = String(idMaxisaco).trim();
+
     if (codigosLeidos.includes(idMaxisaco)) {
 
         mostrarMensaje(
 
-            `⚠️ ${idMaxisaco} ya fue leído.\n${cantidadLeida} / ${cantidadEsperada}`,
+            `⚠️ ${idMaxisaco} ya fue leído.<br>${cantidadLeida} / ${cantidadEsperada}`,
 
             false
 
