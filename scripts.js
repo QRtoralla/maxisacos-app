@@ -384,17 +384,19 @@ function iniciarScanner() {
 ===================================================== */
 
 function codigoDetectado(idMaxisaco) {
-   
-   
-/*Evitar lecturas mientras se está cerrando*/
-   if (lecturaFinalizada) {
 
-    return;
+    // Evitar lecturas mientras se finaliza el proceso
+    if (lecturaFinalizada) {
 
-}
+        return;
+
+    }
+
 
     idMaxisaco = String(idMaxisaco).trim();
 
+
+    // Verificar si el QR ya fue leído en esta sesión
     if (codigosLeidos.includes(idMaxisaco)) {
 
         mostrarMensaje(
@@ -409,11 +411,17 @@ function codigoDetectado(idMaxisaco) {
 
     }
 
+
+    // Guardar temporalmente el QR
     codigosLeidos.push(idMaxisaco);
 
+
+    // Aumentar contador
     cantidadLeida++;
 
+
     ELEMENTOS.txtIdMaxisaco.value = idMaxisaco;
+
 
     mostrarMensaje(
 
@@ -423,34 +431,31 @@ function codigoDetectado(idMaxisaco) {
 
     );
 
+
+    // Cuando completa la cantidad solicitada
     if (cantidadLeida === cantidadEsperada) {
 
-    lecturaFinalizada = true;
+        lecturaFinalizada = true;
 
-    mostrarMensaje(
-        "Enviando registros...",
-        true
-    );
 
-    detenerScanner()
+        mostrarMensaje(
 
-        .then(function () {
+            "Enviando registros...",
 
-            enviarTodosLosRegistros();
+            true
 
-        });
+        );
 
-}
 
-   
+        detenerScanner()
 
-    detenerScanner()
+            .then(function () {
 
-        .then(function () {
+                enviarTodosLosRegistros();
 
-            enviarTodosLosRegistros();
+            });
 
-        });
+    }
 
 }
 
