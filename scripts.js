@@ -48,6 +48,12 @@ let scannerQR = null;
 
 let scannerActivo = false;
 
+let cantidadEsperada = 0;
+
+let cantidadLeida = 0;
+
+let codigosLeidos = [];
+
 
 /* =====================================================
    INICIALIZACIÓN
@@ -242,6 +248,46 @@ function iniciarScanner() {
         return;
 
     }
+
+    const cantidad = Number(
+
+        prompt("¿Cuántos maxisacos se leerán?")
+
+    );
+
+    if (
+
+        !Number.isInteger(cantidad) ||
+
+        cantidad <= 0
+
+    ) {
+
+        mostrarMensaje(
+
+            "Ingrese una cantidad válida.",
+
+            false
+
+        );
+
+        return;
+
+    }
+
+    cantidadEsperada = cantidad;
+
+    cantidadLeida = 0;
+
+    codigosLeidos = [];
+
+    mostrarMensaje(
+
+        `0 / ${cantidadEsperada}`,
+
+        true
+
+    );
 
     scannerActivo = true;
 
