@@ -436,7 +436,7 @@ function codigoDetectado(idMaxisaco) {
 
             enviarTodosLosRegistros();
 
-    }
+    });
 
 }
 
