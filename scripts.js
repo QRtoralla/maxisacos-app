@@ -54,6 +54,8 @@ let cantidadLeida = 0;
 
 let codigosLeidos = [];
 
+let lecturaFinalizada = false;
+
 
 /* =====================================================
    INICIALIZACIÓN
@@ -308,6 +310,8 @@ function iniciarScanner() {
 
     codigosLeidos = [];
 
+   lecturaFinalizada = false;
+
     mostrarMensaje(
 
         `0 / ${cantidadEsperada}`,
@@ -380,6 +384,13 @@ function iniciarScanner() {
 ===================================================== */
 
 function codigoDetectado(idMaxisaco) {
+   
+/*Evitar lecturas mientras se está cerrando*/
+   if (lecturaFinalizada) {
+
+    return;
+
+}
 
     idMaxisaco = String(idMaxisaco).trim();
 
@@ -413,7 +424,8 @@ function codigoDetectado(idMaxisaco) {
 
     if (cantidadLeida === cantidadEsperada) {
 
-        detenerScanner();
+        lecturaFinalizada = true;
+
 
         mostrarMensaje(
 
@@ -422,8 +434,11 @@ function codigoDetectado(idMaxisaco) {
             true
 
         );
+       
+       detenerScanner()
+       .then(function () {
          enviarTodosLosRegistros();
-    }
+    });
 
 }
 
@@ -436,11 +451,11 @@ function detenerScanner() {
 
     if (!scannerActivo) {
 
-        return;
+       return Promise.resolve();
 
     }
 
-    scannerQR.stop()
+    return scannerQR.stop()
 
         .then(function () {
 
@@ -452,6 +467,7 @@ function detenerScanner() {
                 "none";
 
         });
+
 
 }
 
