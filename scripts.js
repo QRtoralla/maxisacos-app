@@ -354,7 +354,7 @@ function codigoDetectado() {
 
     ELEMENTOS.txtIdMaxisaco.value = idMaxisaco;
 
-    enviarRegistro(idMaxisaco);
+    enviarRegistro();
 
 }
 
