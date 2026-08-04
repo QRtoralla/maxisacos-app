@@ -435,6 +435,10 @@ function codigoDetectado(idMaxisaco) {
 
     );
 
+    }
+
+   
+
     detenerScanner()
 
         .then(function () {
@@ -445,7 +449,7 @@ function codigoDetectado(idMaxisaco) {
 
 }
 
-}
+
 /* =====================================================
    DETENER SCANNER
 ===================================================== */
