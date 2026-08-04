@@ -436,19 +436,23 @@ setTimeout(function () {
 
     );
 
-    if (cantidadLeida === cantidadEsperada) {
+   if (cantidadLeida === cantidadEsperada) {
 
-        detenerScanner();
+    mostrarMensaje(
 
-        mostrarMensaje(
+        "📤 Enviando registros...",
 
-            "✅ Lectura completada.",
+        true
 
-            true
+    );
 
-        );
+    detenerScanner()
 
-    }
+        .then(function () {
+
+            enviarTodosLosRegistros();
+
+        });
 
 }
 
