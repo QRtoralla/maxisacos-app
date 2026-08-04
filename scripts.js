@@ -419,6 +419,8 @@ function codigoDetectado(idMaxisaco) {
     // Aumentar contador
     cantidadLeida++;
 
+   console.log("Leidos:", cantidadLeida, "Esperados:", cantidadEsperada);
+
 
     ELEMENTOS.txtIdMaxisaco.value = idMaxisaco;
 
@@ -433,29 +435,19 @@ function codigoDetectado(idMaxisaco) {
 
 
     // Cuando completa la cantidad solicitada
-    if (cantidadLeida === cantidadEsperada) {
+    if (cantidadLeida >= cantidadEsperada) {
 
-        lecturaFinalizada = true;
+    lecturaFinalizada = true;
 
+    detenerScanner()
 
-        mostrarMensaje(
+        .then(function () {
 
-            "Enviando registros...",
+            enviarTodosLosRegistros();
 
-            true
+        });
 
-        );
-
-
-        detenerScanner()
-
-            .then(function () {
-
-                enviarTodosLosRegistros();
-
-            });
-
-    }
+}
 
 }
 
