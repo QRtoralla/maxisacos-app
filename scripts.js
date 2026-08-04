@@ -348,13 +348,49 @@ function iniciarScanner() {
    CÓDIGO DETECTADO
 ===================================================== */
 
-function codigoDetectado() {
+function codigoDetectado(idMaxisaco) {
 
-    detenerScanner();
+    if (codigosLeidos.includes(idMaxisaco)) {
+
+        mostrarMensaje(
+
+            `⚠️ ${idMaxisaco} ya fue leído.\n${cantidadLeida} / ${cantidadEsperada}`,
+
+            false
+
+        );
+
+        return;
+
+    }
+
+    codigosLeidos.push(idMaxisaco);
+
+    cantidadLeida++;
 
     ELEMENTOS.txtIdMaxisaco.value = idMaxisaco;
 
-    enviarRegistro(idMaxisaco);
+    mostrarMensaje(
+
+        `${cantidadLeida} / ${cantidadEsperada}`,
+
+        true
+
+    );
+
+    if (cantidadLeida === cantidadEsperada) {
+
+        detenerScanner();
+
+        mostrarMensaje(
+
+            "✅ Lectura completada.",
+
+            true
+
+        );
+
+    }
 
 }
 
