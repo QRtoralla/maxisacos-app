@@ -310,6 +310,8 @@ function iniciarScanner() {
 
     codigosLeidos = [];
 
+   lecturaFinalizada = false;
+
     mostrarMensaje(
 
         `0 / ${cantidadEsperada}`,
@@ -383,6 +385,10 @@ function iniciarScanner() {
 
 function codigoDetectado(idMaxisaco) {
 
+   if (lecturaFinalizada){
+      return;
+   }
+
     idMaxisaco = String(idMaxisaco).trim();
 
     if (codigosLeidos.includes(idMaxisaco)) {
@@ -415,15 +421,20 @@ function codigoDetectado(idMaxisaco) {
 
     if (cantidadLeida === cantidadEsperada) {
 
-        detenerScanner();
+        lecturaFinalizada = true;
 
         mostrarMensaje(
 
-            "✅ Lectura completada.",
+            "✅ Enviando registros...",
 
             true
 
         );
+         detenerScanner()
+
+        .then(function () {
+
+            enviarTodosLosRegistros();
 
     }
 
