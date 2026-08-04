@@ -424,21 +424,23 @@ function codigoDetectado(idMaxisaco) {
 
     if (cantidadLeida === cantidadEsperada) {
 
-        lecturaFinalizada = true;
+    lecturaFinalizada = true;
 
+    mostrarMensaje(
 
-        mostrarMensaje(
+        "Enviando registros...",
 
-            "✅ Enviando registros.",
+        true
 
-            true
+    );
 
-        );
-       
-       detenerScanner()
-       .then(function () {
-         enviarTodosLosRegistros();
-    });
+    detenerScanner()
+
+        .then(function () {
+
+            enviarTodosLosRegistros();
+
+        });
 
 }
 
@@ -451,7 +453,7 @@ function detenerScanner() {
 
     if (!scannerActivo) {
 
-       return Promise.resolve();
+        return Promise.resolve();
 
     }
 
@@ -467,7 +469,6 @@ function detenerScanner() {
                 "none";
 
         });
-
 
 }
 
