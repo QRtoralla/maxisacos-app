@@ -385,6 +385,7 @@ function iniciarScanner() {
 
 function codigoDetectado(idMaxisaco) {
    
+   
 /*Evitar lecturas mientras se está cerrando*/
    if (lecturaFinalizada) {
 
@@ -444,7 +445,7 @@ function codigoDetectado(idMaxisaco) {
 
 }
 
-
+}
 /* =====================================================
    DETENER SCANNER
 ===================================================== */
