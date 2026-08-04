@@ -418,6 +418,12 @@ function codigoDetectado(idMaxisaco) {
 
     // Aumentar contador
     cantidadLeida++;
+   console.log(
+    "Leídos:",
+    cantidadLeida,
+    "Esperados:",
+    cantidadEsperada
+);
 
    console.log("Leidos:", cantidadLeida, "Esperados:", cantidadEsperada);
 
