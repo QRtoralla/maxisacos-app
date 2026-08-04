@@ -440,7 +440,7 @@ function codigoDetectado(idMaxisaco) {
 
 }
 
-}
+}  /*ultimam llave que se agrego, pero si se agrega no abre la camara*/
 
 
 /* =====================================================
