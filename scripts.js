@@ -310,8 +310,6 @@ function iniciarScanner() {
 
     codigosLeidos = [];
 
-   lecturaFinalizada = false;
-
     mostrarMensaje(
 
         `0 / ${cantidadEsperada}`,
@@ -385,18 +383,8 @@ function iniciarScanner() {
 
 function codigoDetectado(idMaxisaco) {
 
-    // Evitar lecturas mientras se finaliza el proceso
-    if (lecturaFinalizada) {
-
-        return;
-
-    }
-
-
     idMaxisaco = String(idMaxisaco).trim();
 
-
-    // Verificar si el QR ya fue leído en esta sesión
     if (codigosLeidos.includes(idMaxisaco)) {
 
         mostrarMensaje(
@@ -411,25 +399,11 @@ function codigoDetectado(idMaxisaco) {
 
     }
 
-
-    // Guardar temporalmente el QR
     codigosLeidos.push(idMaxisaco);
 
-
-    // Aumentar contador
     cantidadLeida++;
-   console.log(
-    "Leídos:",
-    cantidadLeida,
-    "Esperados:",
-    cantidadEsperada
-);
-
-   console.log("Leidos:", cantidadLeida, "Esperados:", cantidadEsperada);
-
 
     ELEMENTOS.txtIdMaxisaco.value = idMaxisaco;
-
 
     mostrarMensaje(
 
@@ -439,21 +413,19 @@ function codigoDetectado(idMaxisaco) {
 
     );
 
+    if (cantidadLeida === cantidadEsperada) {
 
-    // Cuando completa la cantidad solicitada
-    if (cantidadLeida >= cantidadEsperada) {
+        detenerScanner();
 
-    lecturaFinalizada = true;
+        mostrarMensaje(
 
-    detenerScanner()
+            "✅ Lectura completada.",
 
-        .then(function () {
+            true
 
-            enviarTodosLosRegistros();
+        );
 
-        });
-
-}
+    }
 
 }
 
