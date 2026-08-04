@@ -440,6 +440,8 @@ function codigoDetectado(idMaxisaco) {
 
 }
 
+}
+
 
 /* =====================================================
    DETENER SCANNER
