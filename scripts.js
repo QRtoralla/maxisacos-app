@@ -428,14 +428,19 @@ function codigoDetectado(idMaxisaco) {
     lecturaFinalizada = true;
 
     mostrarMensaje(
-
         "Enviando registros...",
-
         true
-
     );
 
-    }
+    detenerScanner()
+
+        .then(function () {
+
+            enviarTodosLosRegistros();
+
+        });
+
+}
 
    
 
