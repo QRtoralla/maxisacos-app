@@ -198,6 +198,33 @@ async function enviarRegistro(idMaxisaco) {
 
 }
 
+/* ENVIAR TODOS LOS REGISTROS */
+
+async function enviarTodosLosRegistros() {
+
+    for (const idMaxisaco of codigosLeidos) {
+
+        await enviarRegistro(idMaxisaco);
+
+    }
+
+    mostrarMensaje(
+
+        "✅ Lectura completada y registros enviados.",
+
+        true
+
+    );
+
+    codigosLeidos = [];
+
+    cantidadEsperada = 0;
+
+    cantidadLeida = 0;
+
+}
+
+
 
 /* =====================================================
    MOSTRAR MENSAJES
@@ -390,12 +417,12 @@ function codigoDetectado(idMaxisaco) {
 
         mostrarMensaje(
 
-            "✅ Lectura completada.",
+            "✅ Enviando registros.",
 
             true
 
         );
-
+         enviarTodosLosRegistros();
     }
 
 }
