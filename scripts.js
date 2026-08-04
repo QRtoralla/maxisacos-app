@@ -348,13 +348,13 @@ function iniciarScanner() {
    CÓDIGO DETECTADO
 ===================================================== */
 
-function codigoDetectado(idMaxisaco) {
+function codigoDetectado() {
 
     detenerScanner();
 
     ELEMENTOS.txtIdMaxisaco.value = idMaxisaco;
 
-    enviarRegistro();
+    enviarRegistro(idMaxisaco);
 
 }
 
