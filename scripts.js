@@ -52,6 +52,7 @@ let cantidadEsperada = 0;
 
 let cantidadLeida = 0;
 
+
 let codigosLeidos = [];
 
 let lecturaFinalizada = false;
@@ -105,6 +106,7 @@ function registrarMaxisaco() {
     enviarRegistro(idMaxisaco);
 
 }
+
 
 
 /* =====================================================
@@ -162,6 +164,7 @@ async function enviarRegistro(idMaxisaco) {
                 `✅ ${datos.id}<br>
                  Vueltas: ${datos.vueltas}`,
 
+
                 true
 
             );
@@ -218,6 +221,7 @@ async function enviarTodosLosRegistros() {
 
     );
 
+
     codigosLeidos = [];
 
     cantidadEsperada = 0;
@@ -272,6 +276,7 @@ function limpiarFormulario() {
 
 function iniciarScanner() {
 
+
     if (scannerActivo) {
 
         return;
@@ -310,8 +315,6 @@ function iniciarScanner() {
 
     codigosLeidos = [];
 
-   lecturaFinalizada = false;
-
     mostrarMensaje(
 
         `0 / ${cantidadEsperada}`,
@@ -329,6 +332,7 @@ function iniciarScanner() {
         new Html5Qrcode("contenedorScanner");
 
     scannerQR.start(
+
 
     {
 
@@ -385,9 +389,6 @@ function iniciarScanner() {
 
 function codigoDetectado(idMaxisaco) {
 
-   if (lecturaFinalizada){
-      return;
-   }
 
     idMaxisaco = String(idMaxisaco).trim();
 
@@ -421,26 +422,19 @@ function codigoDetectado(idMaxisaco) {
 
     if (cantidadLeida === cantidadEsperada) {
 
-        lecturaFinalizada = true;
+        detenerScanner();
 
         mostrarMensaje(
 
-            "✅ Enviando registros...",
+            "✅ Lectura completada.",
 
             true
 
         );
-         detenerScanner()
 
-        .then(function () {
-
-            enviarTodosLosRegistros();
-
-    });
+    }
 
 }
-
-}  /*ultimam llave que se agrego, pero si se agrega no abre la camara*/
 
 
 /* =====================================================
@@ -450,6 +444,7 @@ function codigoDetectado(idMaxisaco) {
 function detenerScanner() {
 
     if (!scannerActivo) {
+
 
         return Promise.resolve();
 
