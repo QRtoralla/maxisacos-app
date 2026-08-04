@@ -348,7 +348,7 @@ function iniciarScanner() {
    CÓDIGO DETECTADO
 ===================================================== */
 
-function codigoDetectado(idMaxisaco) {
+function codigoDetectado() {
 
     detenerScanner();
 
