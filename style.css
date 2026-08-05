@@ -236,6 +236,8 @@ button{
 
 .btn-flash{
 
+    display: none;
+
     position: absolute;
 
     top: 10px;
