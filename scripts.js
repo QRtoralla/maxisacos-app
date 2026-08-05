@@ -413,11 +413,6 @@ function codigoDetectado(idMaxisaco) {
 
    pausaLectura = true;
 
-setTimeout(function () {
-
-    pausaLectura = false;
-
-},);
 
     ELEMENTOS.txtIdMaxisaco.value = idMaxisaco;
 
