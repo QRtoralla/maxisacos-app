@@ -52,12 +52,9 @@ let cantidadEsperada = 0;
 
 let cantidadLeida = 0;
 
-
 let codigosLeidos = [];
 
 let lecturaFinalizada = false;
-
-let pausaLectura = false;
 
 
 /* =====================================================
@@ -108,7 +105,6 @@ function registrarMaxisaco() {
     enviarRegistro(idMaxisaco);
 
 }
-
 
 
 /* =====================================================
@@ -166,7 +162,6 @@ async function enviarRegistro(idMaxisaco) {
                 `✅ ${datos.id}<br>
                  Vueltas: ${datos.vueltas}`,
 
-
                 true
 
             );
@@ -223,7 +218,6 @@ async function enviarTodosLosRegistros() {
 
     );
 
-
     codigosLeidos = [];
 
     cantidadEsperada = 0;
@@ -277,7 +271,6 @@ function limpiarFormulario() {
 ===================================================== */
 
 function iniciarScanner() {
-
 
     if (scannerActivo) {
 
@@ -335,7 +328,6 @@ function iniciarScanner() {
 
     scannerQR.start(
 
-
     {
 
         facingMode: "environment"
@@ -391,13 +383,6 @@ function iniciarScanner() {
 
 function codigoDetectado(idMaxisaco) {
 
-   if (pausaLectura) {
-
-        return;
-
-    }
-
-
     idMaxisaco = String(idMaxisaco).trim();
 
     if (codigosLeidos.includes(idMaxisaco)) {
@@ -418,14 +403,6 @@ function codigoDetectado(idMaxisaco) {
 
     cantidadLeida++;
 
-   pausaLectura = true;
-
-setTimeout(function () {
-
-    pausaLectura = false;
-
-}, 700);
-
     ELEMENTOS.txtIdMaxisaco.value = idMaxisaco;
 
     mostrarMensaje(
@@ -436,23 +413,19 @@ setTimeout(function () {
 
     );
 
-   if (cantidadLeida === cantidadEsperada) {
+    if (cantidadLeida === cantidadEsperada) {
 
-    mostrarMensaje(
+        detenerScanner();
 
-        "📤 Enviando registros...",
+        mostrarMensaje(
 
-        true
+            "✅ Lectura completada.",
 
-    );
+            true
 
-    detenerScanner()
+        );
 
-        .then(function () {
-
-            enviarTodosLosRegistros();
-
-        });
+    }
 
 }
 
@@ -464,7 +437,6 @@ setTimeout(function () {
 function detenerScanner() {
 
     if (!scannerActivo) {
-
 
         return Promise.resolve();
 
