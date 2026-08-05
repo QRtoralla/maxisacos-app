@@ -422,17 +422,20 @@ function codigoDetectado(idMaxisaco) {
 
     if (cantidadLeida === cantidadEsperada) {
 
-        detenerScanner();
+    mostrarMensaje(
+        "📤 Enviando registros...",
+        true
+    );
 
-        mostrarMensaje(
+    detenerScanner()
 
-            "✅ Lectura completada.",
+        .then(function () {
 
-            true
+            enviarTodosLosRegistros();
 
-        );
+        });
 
-    }
+}
 
 }
 
