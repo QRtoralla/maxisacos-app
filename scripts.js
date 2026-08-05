@@ -38,7 +38,7 @@ const ELEMENTOS = {
         document.getElementById("contenedorScanner"),
 
    btnFlash:
-    document.getElementById("btnFlash"),
+    document.getElementById("btnFlash")
 
 };
 
