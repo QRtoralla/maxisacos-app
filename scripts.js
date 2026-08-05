@@ -417,7 +417,7 @@ setTimeout(function () {
 
     pausaLectura = false;
 
-}, 700);
+}, 100);
 
 
     ELEMENTOS.txtIdMaxisaco.value = idMaxisaco;
