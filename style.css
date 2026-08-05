@@ -221,17 +221,26 @@ button{
    BOTÓN FLASH
 =========================================== */
 
-#contenedorScanner{
+.scanner{
+ margin-top:25px;
+
     position: relative;
+    
+}
+
+#contenedorScanner{
+   width:100%;
+
+    display:none;
 }
 
 .btn-flash{
 
     position: absolute;
 
-    top: 15px;
+    top: 10px;
 
-    right: 15px;
+    right: 10px;
 
     width: 50px;
 
