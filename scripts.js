@@ -37,6 +37,9 @@ const ELEMENTOS = {
     contenedorScanner:
         document.getElementById("contenedorScanner")
 
+   btnFlash:
+    document.getElementById("btnFlash")
+
 };
 
 
@@ -328,6 +331,9 @@ function iniciarScanner() {
     ELEMENTOS.contenedorScanner.style.display =
         "block";
 
+   ELEMENTOS.btnFlash.style.display =
+    "block";
+
     scannerQR =
         new Html5Qrcode("contenedorScanner");
 
@@ -462,6 +468,9 @@ function detenerScanner() {
             scannerActivo = false;
 
             ELEMENTOS.contenedorScanner.style.display =
+                "none";
+
+           ELEMENTOS.btnFlash.style.display =
                 "none";
 
         });
