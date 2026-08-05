@@ -56,6 +56,8 @@ let codigosLeidos = [];
 
 let lecturaFinalizada = false;
 
+let pausaLectura = false;
+
 
 /* =====================================================
    INICIALIZACIÓN
@@ -382,6 +384,12 @@ function iniciarScanner() {
 ===================================================== */
 
 function codigoDetectado(idMaxisaco) {
+   
+   if (pausaLectura) {
+
+    return;
+
+}
 
     idMaxisaco = String(idMaxisaco).trim();
 
@@ -402,6 +410,14 @@ function codigoDetectado(idMaxisaco) {
     codigosLeidos.push(idMaxisaco);
 
     cantidadLeida++;
+
+   pausaLectura = true;
+
+setTimeout(function () {
+
+    pausaLectura = false;
+
+}, 700);
 
     ELEMENTOS.txtIdMaxisaco.value = idMaxisaco;
 
