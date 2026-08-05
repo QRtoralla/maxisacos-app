@@ -35,10 +35,10 @@ const ELEMENTOS = {
         document.getElementById("mensajeEstado"),
 
     contenedorScanner:
-        document.getElementById("contenedorScanner")
+        document.getElementById("contenedorScanner"),
 
    btnFlash:
-    document.getElementById("btnFlash")
+    document.getElementById("btnFlash"),
 
 };
 
