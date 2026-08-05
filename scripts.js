@@ -52,6 +52,7 @@ let cantidadEsperada = 0;
 
 let cantidadLeida = 0;
 
+
 let codigosLeidos = [];
 
 let lecturaFinalizada = false;
@@ -105,6 +106,7 @@ function registrarMaxisaco() {
     enviarRegistro(idMaxisaco);
 
 }
+
 
 
 /* =====================================================
@@ -162,6 +164,7 @@ async function enviarRegistro(idMaxisaco) {
                 `✅ ${datos.id}<br>
                  Vueltas: ${datos.vueltas}`,
 
+
                 true
 
             );
@@ -218,6 +221,7 @@ async function enviarTodosLosRegistros() {
 
     );
 
+
     codigosLeidos = [];
 
     cantidadEsperada = 0;
@@ -271,6 +275,7 @@ function limpiarFormulario() {
 ===================================================== */
 
 function iniciarScanner() {
+
 
     if (scannerActivo) {
 
@@ -328,6 +333,7 @@ function iniciarScanner() {
 
     scannerQR.start(
 
+
     {
 
         facingMode: "environment"
@@ -383,6 +389,7 @@ function iniciarScanner() {
 
 function codigoDetectado(idMaxisaco) {
 
+
     idMaxisaco = String(idMaxisaco).trim();
 
     if (codigosLeidos.includes(idMaxisaco)) {
@@ -437,6 +444,7 @@ function codigoDetectado(idMaxisaco) {
 function detenerScanner() {
 
     if (!scannerActivo) {
+
 
         return Promise.resolve();
 
