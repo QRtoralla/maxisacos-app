@@ -340,23 +340,6 @@ alert("Entró a iniciarScanner");
     scannerQR =
         new Html5Qrcode("contenedorScanner");
 
-   /*comprobar la capacidad de la camara ultimo codigo, borrar despues*/
-   setTimeout(async function () {
-
-    try {
-
-        console.log(await scannerQR.getRunningTrackCapabilities());
-
-    }
-
-    catch (e) {
-
-        console.log(e);
-
-    }
-
-}, 1000);
-
     scannerQR.start(
 
 
