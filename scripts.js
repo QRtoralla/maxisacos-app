@@ -60,7 +60,7 @@ let codigosLeidos = [];
 
 let lecturaFinalizada = false;
 
-let flashEncendido = false;
+
 
 
 /* =====================================================
@@ -86,10 +86,6 @@ function inicializarAplicacion() {
         iniciarScanner
     );
 
-   ELEMENTOS.btnFlash.addEventListener(
-    "click",
-    cambiarFlash
-   );
 
 }
 
