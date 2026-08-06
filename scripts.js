@@ -503,42 +503,7 @@ function detenerScanner() {
       codigo nuevo comprobar si es compatible el equipo con el flash (para activar)
       ------------------------------------*/
 
-   async function cambiarFlash() {
 
-    if (!scannerQR) {
-
-        return;
-
-    }
-
-    try {
-
-        flashEncendido = !flashEncendido;
-
-        await scannerQR.applyVideoConstraints({
-
-            advanced: [
-
-                {
-
-                    torch: flashEncendido
-
-                }
-
-            ]
-
-        });
-
-    }
-
-    catch (error) {
-
-     /*   console.log("Este dispositivo no soporta flash.");*/
-       console.error(error);
-
-    }
-
-}
          
 
 }
