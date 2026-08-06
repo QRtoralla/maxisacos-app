@@ -163,22 +163,16 @@ async function enviarRegistro(idMaxisaco) {
 
         const datos = JSON.parse(texto);
 
+       /*Paso 1: modificar enviarRegistro()*/
+       
         if (datos.ok) {
 
-            mostrarMensaje(
+    limpiarFormulario();
 
-                `✅ ${datos.id}<br>
-                 Vueltas: ${datos.vueltas}`,
+}
 
-
-                true
-
-            );
-
-            limpiarFormulario();
-
-        }
-
+return datos;
+/*----------------*/
         else {
 
             mostrarMensaje(
@@ -197,36 +191,89 @@ async function enviarRegistro(idMaxisaco) {
 
         console.error(error);
 
-        mostrarMensaje(
+        return {
 
-            "Error de conexión.",
+    ok: false,
 
-            false
+    mensaje: "Error de conexión."
 
-        );
+      };
 
     }
 
 }
 
 /* ENVIAR TODOS LOS REGISTROS */
-
+/*06-08-2026*/
 async function enviarTodosLosRegistros() {
+
+    let enviados = 0;
+
+    let advertencias = [];
 
     for (const idMaxisaco of codigosLeidos) {
 
-        await enviarRegistro(idMaxisaco);
+        const resultado = await enviarRegistro(idMaxisaco);
+
+        if (resultado.ok) {
+
+            enviados++;
+
+        } else {
+
+            advertencias.push(resultado.mensaje);
+
+        }
 
     }
 
+    let mensaje =
+
+        "================================<br><br>" +
+
+        "✅ <b>Lectura completada</b><br><br>" +
+
+        "Registros enviados: " +
+
+        enviados +
+
+        "<br><br>";
+
+    if (advertencias.length === 0) {
+
+        mensaje +=
+
+            "Sin advertencias.";
+
+    }
+
+    else {
+
+        mensaje +=
+
+            "Advertencias: " +
+
+            advertencias.length +
+
+            "<br><br>" +
+
+            "────────────────────────<br><br>" +
+
+            advertencias.join("<br><br>");
+
+    }
+
+    mensaje +=
+
+        "<br><br>================================";
+
     mostrarMensaje(
 
-        "✅ Lectura completada y registros enviados.",
+        mensaje,
 
         true
 
     );
-
 
     codigosLeidos = [];
 
@@ -235,7 +282,6 @@ async function enviarTodosLosRegistros() {
     cantidadLeida = 0;
 
 }
-
 
 
 /* =====================================================
