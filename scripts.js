@@ -60,7 +60,7 @@ let codigosLeidos = [];
 
 let lecturaFinalizada = false;
 
-let flashencendido = false;
+let flashEncendido = false;
 
 
 /* =====================================================
@@ -496,7 +496,7 @@ function detenerScanner() {
 
     try {
 
-        flashencendido = !flashencendido;
+        flashEncendido = !flashEncendido;
 
         await scannerQR.applyVideoConstraints({
 
@@ -504,7 +504,7 @@ function detenerScanner() {
 
                 {
 
-                    torch: flashencendido
+                    torch: flashEncendido
 
                 }
 
@@ -516,7 +516,8 @@ function detenerScanner() {
 
     catch (error) {
 
-        console.log("Este dispositivo no soporta flash.");
+     /*   console.log("Este dispositivo no soporta flash.");*/
+       console.error(error);
 
     }
 
