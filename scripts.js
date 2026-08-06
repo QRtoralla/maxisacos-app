@@ -496,7 +496,7 @@ function detenerScanner() {
 
     try {
 
-        flashEncendido = !flashEncendido;
+        flashencendido = !flashencendido;
 
         await scannerQR.applyVideoConstraints({
 
@@ -504,7 +504,7 @@ function detenerScanner() {
 
                 {
 
-                    torch: flashEncendido
+                    torch: flashencendido
 
                 }
 
