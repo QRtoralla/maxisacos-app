@@ -60,6 +60,8 @@ let codigosLeidos = [];
 
 let lecturaFinalizada = false;
 
+let flashencendido = false;
+
 
 /* =====================================================
    INICIALIZACIÓN
@@ -83,6 +85,11 @@ function inicializarAplicacion() {
         "click",
         iniciarScanner
     );
+
+   ELEMENTOS.btnFlash.addEventListener(
+    "click",
+    cambiarFlash
+   );
 
 }
 
@@ -474,6 +481,47 @@ function detenerScanner() {
                 "none";
 
         });
+
+      /*-------------------------
+      codigo nuevo comprobar si es compatible el equipo con el flash (para activar)
+      ------------------------------------*/
+
+   async function cambiarFlash() {
+
+    if (!scannerQR) {
+
+        return;
+
+    }
+
+    try {
+
+        flashEncendido = !flashEncendido;
+
+        await scannerQR.applyVideoConstraints({
+
+            advanced: [
+
+                {
+
+                    torch: flashEncendido
+
+                }
+
+            ]
+
+        });
+
+    }
+
+    catch (error) {
+
+        console.log("Este dispositivo no soporta flash.");
+
+    }
+
+}
+         
 
 }
 
