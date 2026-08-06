@@ -285,7 +285,7 @@ function limpiarFormulario() {
 ===================================================== */
 
 function iniciarScanner() {
-iniciarScanner()
+alert("Entró a iniciarScanner");
 
     if (scannerActivo) {
 
