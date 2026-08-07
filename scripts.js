@@ -253,6 +253,41 @@ for (const resultado of resultados) {
 Cuántos registros fueron exitosos.
 Cuántas advertencias hubo.
 Qué maxisacos quedaron obsoletos.*/
+
+   /*------------------------------------------------------------------*/
+   let mensaje =
+
+    "==============================<br><br>" +
+
+    "✅ Lectura completada<br><br>" +
+
+    `Registros enviados: ${enviados}<br><br>` +
+
+    `Advertencias: ${advertencias}<br><br>` +
+
+    "──────────────────────────────<br><br>";
+
+
+if (advertencias > 0) {
+
+    mensaje +=
+
+        listaObsoletos +
+
+        "Se recomienda retirarlo de circulación.";
+
+}
+
+
+mostrarMensaje(
+
+    mensaje,
+
+    advertencias === 0
+
+);
+
+   /*-----------------------------------------------------------*/
    
 
     codigosLeidos = [];
