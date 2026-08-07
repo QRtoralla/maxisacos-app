@@ -127,6 +127,7 @@ function obtenerIdMaxisaco() {
    ENVIAR REGISTRO
 ===================================================== */
 
+/*en relacion a los catch solo se modifica este en general, tampoco appscript*/
 async function enviarRegistro(idMaxisaco) {
 
     try {
@@ -162,32 +163,29 @@ async function enviarRegistro(idMaxisaco) {
 
         if (datos.ok) {
 
-            mostrarMensaje(
+    limpiarFormulario();
 
-                `✅ ${datos.id}<br>
+    return {
 
-                 Vueltas: ${datos.vueltas}`,
+        ok: true,
 
+        id: datos.id,
 
-                true
+        vueltas: datos.vueltas
 
-            );
+    };
 
-            limpiarFormulario();
+}
 
-        }
+return {
 
-        else {
+    ok: false,
 
-            mostrarMensaje(
+    id: idMaxisaco,
 
-                `❌ ${datos.mensaje}`,
+    mensaje: datos.mensaje
 
-                false
-
-            );
-
-        }
+};
 
     }
 
@@ -195,13 +193,15 @@ async function enviarRegistro(idMaxisaco) {
 
         console.error(error);
 
-        mostrarMensaje(
+        return {
 
-            "Error de conexión.",
+        ok: false,
 
-            false
+        id: idMaxisaco,
 
-        );
+        mensaje: "Error de conexión."
+
+    };
 
     }
 
@@ -211,14 +211,49 @@ async function enviarRegistro(idMaxisaco) {
 
 async function enviarTodosLosRegistros() {
 
+   const resultados = [];
+
     for (const idMaxisaco of codigosLeidos) {
 
-        await enviarRegistro(idMaxisaco);
+        const resultado =
+           await enviarRegistro(idMaxisaco);
+
+       resultados.push(resultado);
 
     }
 
-    /*aqui va el codigo que pegue recien*/
+   let enviados = 0;
+   let advertencias = 0;
+   let listaObsoletos = "";
+   
 
+ // Aquí seguirá el siguiente bloque
+
+for (const resultado of resultados) {
+
+    if (resultado.ok) {
+
+        enviados++;
+
+    }
+
+    else {
+
+        advertencias++;
+
+        listaObsoletos +=
+            `⚠️ ${resultado.id} alcanzó el máximo de 5 vueltas.<br><br>`;
+
+    }
+
+}
+
+   /*en el codigo anterior no mostrará nada, solo contará:
+
+Cuántos registros fueron exitosos.
+Cuántas advertencias hubo.
+Qué maxisacos quedaron obsoletos.*/
+   
 
     codigosLeidos = [];
 
