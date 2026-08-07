@@ -8,6 +8,7 @@ const CONFIG = {
 
     URL_WEBAPP:
         "https://script.google.com/macros/s/AKfycbw3ZdVicZFzzumU0wjV-_yGtyhcs8AQjvLgNcEH8N8G56qaRQshGjw_F5OpXVK2hrFQ/exec",
+   
 
     FPS: 10,
 
