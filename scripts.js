@@ -35,10 +35,7 @@ const ELEMENTOS = {
         document.getElementById("mensajeEstado"),
 
     contenedorScanner:
-        document.getElementById("contenedorScanner"),
-
-   btnFlash:
-    document.getElementById("btnFlash")
+        document.getElementById("contenedorScanner")
 
 };
 
@@ -56,11 +53,10 @@ let cantidadEsperada = 0;
 let cantidadLeida = 0;
 
 
+
 let codigosLeidos = [];
 
 let lecturaFinalizada = false;
-
-
 
 
 /* =====================================================
@@ -85,7 +81,6 @@ function inicializarAplicacion() {
         "click",
         iniciarScanner
     );
-
 
 }
 
@@ -112,6 +107,7 @@ function registrarMaxisaco() {
     enviarRegistro(idMaxisaco);
 
 }
+
 
 
 
@@ -163,16 +159,23 @@ async function enviarRegistro(idMaxisaco) {
 
         const datos = JSON.parse(texto);
 
-       /*Paso 1: modificar enviarRegistro()*/
-       
         if (datos.ok) {
 
-    limpiarFormulario();
+            mostrarMensaje(
 
-}
+                `✅ ${datos.id}<br>
 
-return datos;
-/*----------------*/
+                 Vueltas: ${datos.vueltas}`,
+
+
+                true
+
+            );
+
+            limpiarFormulario();
+
+        }
+
         else {
 
             mostrarMensaje(
@@ -191,89 +194,37 @@ return datos;
 
         console.error(error);
 
-        return {
+        mostrarMensaje(
 
-    ok: false,
+            "Error de conexión.",
 
-    mensaje: "Error de conexión."
+            false
 
-      };
+        );
 
     }
 
 }
 
 /* ENVIAR TODOS LOS REGISTROS */
-/*06-08-2026*/
+
 async function enviarTodosLosRegistros() {
-
-    let enviados = 0;
-
-    let advertencias = [];
 
     for (const idMaxisaco of codigosLeidos) {
 
-        const resultado = await enviarRegistro(idMaxisaco);
-
-        if (resultado.ok) {
-
-            enviados++;
-
-        } else {
-
-            advertencias.push(resultado.mensaje);
-
-        }
+        await enviarRegistro(idMaxisaco);
 
     }
-
-    let mensaje =
-
-        "================================<br><br>" +
-
-        "✅ <b>Lectura completada</b><br><br>" +
-
-        "Registros enviados: " +
-
-        enviados +
-
-        "<br><br>";
-
-    if (advertencias.length === 0) {
-
-        mensaje +=
-
-            "Sin advertencias.";
-
-    }
-
-    else {
-
-        mensaje +=
-
-            "Advertencias: " +
-
-            advertencias.length +
-
-            "<br><br>" +
-
-            "────────────────────────<br><br>" +
-
-            advertencias.join("<br><br>");
-
-    }
-
-    mensaje +=
-
-        "<br><br>================================";
 
     mostrarMensaje(
 
-        mensaje,
+        "✅ Lectura completada y registros enviados.",
+
 
         true
 
     );
+
 
     codigosLeidos = [];
 
@@ -282,6 +233,7 @@ async function enviarTodosLosRegistros() {
     cantidadLeida = 0;
 
 }
+
 
 
 /* =====================================================
@@ -324,10 +276,11 @@ function limpiarFormulario() {
 
 /* =====================================================
    SCANNER QR
+
 ===================================================== */
 
 function iniciarScanner() {
-alert("Entró a iniciarScanner");
+
 
     if (scannerActivo) {
 
@@ -380,8 +333,6 @@ alert("Entró a iniciarScanner");
     ELEMENTOS.contenedorScanner.style.display =
         "block";
 
-   ELEMENTOS.btnFlash.style.display =
-    "block";
 
     scannerQR =
         new Html5Qrcode("contenedorScanner");
@@ -438,6 +389,7 @@ alert("Entró a iniciarScanner");
 }
 
 
+
 /* =====================================================
    CÓDIGO DETECTADO
 ===================================================== */
@@ -478,7 +430,7 @@ function codigoDetectado(idMaxisaco) {
     if (cantidadLeida === cantidadEsperada) {
 
     mostrarMensaje(
-        "📤 Enviando registros...",
+        "�� Enviando registros...",
         true
     );
 
@@ -491,6 +443,7 @@ function codigoDetectado(idMaxisaco) {
         });
 
 }
+
 
 }
 
@@ -519,17 +472,7 @@ function detenerScanner() {
             ELEMENTOS.contenedorScanner.style.display =
                 "none";
 
-           ELEMENTOS.btnFlash.style.display =
-                "none";
-
         });
-
-      /*-------------------------
-      codigo nuevo comprobar si es compatible el equipo con el flash (para activar)
-      ------------------------------------*/
-
-
-         
 
 }
 
