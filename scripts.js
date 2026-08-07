@@ -106,7 +106,7 @@ function registrarMaxisaco() {
     }
 
     enviarRegistro(idMaxisaco);
-
+   
 }
 
 
@@ -206,6 +206,69 @@ return {
     }
 
 }
+
+/* =====================================================
+VERIFICAR SI EL QR PERTENECE A UN MAXISACO
+===================================================== */
+
+async function verificarMaxisaco(idMaxisaco) {
+
+    try {
+
+        const respuesta = await fetch(
+            CONFIG.URL_WEBAPP,
+            {
+
+                method: "POST",
+
+                redirect: "follow",
+
+                headers: {
+
+                    "Content-Type":
+                        "text/plain;charset=utf-8"
+
+                },
+
+                body: JSON.stringify({
+
+                    accion: "verificar",
+
+                    id: idMaxisaco
+
+                })
+
+            }
+
+        );
+
+        const texto = await respuesta.text();
+
+        const datos = JSON.parse(texto);
+
+        return datos;
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        return {
+
+            ok: false,
+
+            existe: false,
+
+            mensaje: "Error de conexión."
+
+        };
+
+    }
+
+}
+
+/*el codigo anterior en parte sirve para dejar preparada la comunicacion de github y appscript*/
 
 /* ENVIAR TODOS LOS REGISTROS */
 
