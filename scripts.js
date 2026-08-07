@@ -265,7 +265,7 @@ Qué maxisacos quedaron obsoletos.*/
 
     `Advertencias: ${advertencias}<br><br>` +
 
-    "──────────────────────────────<br><br>";
+    "────────────────────────<br><br>";
 
 
 if (advertencias > 0) {
