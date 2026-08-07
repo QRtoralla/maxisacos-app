@@ -217,14 +217,7 @@ async function enviarTodosLosRegistros() {
 
     }
 
-  /*  mostrarMensaje(*/
-
-    /*    "✅ Lectura completada y registros enviados.",*/
-
-
-    /*    true*/
-
-  /*  );/*
+    /*aqui va el codigo que pegue recien*/
 
 
     codigosLeidos = [];
