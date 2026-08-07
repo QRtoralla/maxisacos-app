@@ -217,14 +217,14 @@ async function enviarTodosLosRegistros() {
 
     }
 
-    mostrarMensaje(
+  /*  mostrarMensaje(*/
 
-        "✅ Lectura completada y registros enviados.",
+    /*    "✅ Lectura completada y registros enviados.",*/
 
 
-        true
+    /*    true*/
 
-    );
+  /*  );/*
 
 
     codigosLeidos = [];
