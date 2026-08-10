@@ -274,9 +274,6 @@ async function verificarMaxisaco(idMaxisaco) {
 
 /*el codigo anterior en parte sirve para dejar preparada la comunicacion de github y appscript*/
 
-/* ENVIAR TODOS LOS REGISTROS */
-
-```javascript
 /* =====================================================
    ENVIAR TODOS LOS REGISTROS
    ===================================================== */
