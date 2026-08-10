@@ -521,16 +521,25 @@ function iniciarScanner() {
    CÓDIGO DETECTADO
 ===================================================== */
 
-function codigoDetectado(idMaxisaco) {
+/* =====================================================
+CÓDIGO DETECTADO
+===================================================== */
 
+async function codigoDetectado(idMaxisaco) {
 
     idMaxisaco = String(idMaxisaco).trim();
+
+
+    /* =================================================
+    COMPROBAR SI YA FUE LEÍDO
+    ================================================= */
 
     if (codigosLeidos.includes(idMaxisaco)) {
 
         mostrarMensaje(
 
-            `⚠️ ${idMaxisaco} ya fue leído.<br>${cantidadLeida} / ${cantidadEsperada}`,
+            `⚠️ ${idMaxisaco} ya fue leído.<br><br>` +
+            `${cantidadLeida} / ${cantidadEsperada}`,
 
             false
 
@@ -540,13 +549,72 @@ function codigoDetectado(idMaxisaco) {
 
     }
 
+
+    /* =================================================
+    VERIFICAR SI EL QR PERTENECE A UN MAXISACO
+    ================================================= */
+
+    const resultado =
+        await verificarMaxisaco(idMaxisaco);
+
+
+    /* =================================================
+    ERROR DE CONEXIÓN
+    ================================================= */
+
+    if (!resultado.ok) {
+
+        mostrarMensaje(
+
+            `❌ ${resultado.mensaje}`,
+
+            false
+
+        );
+
+        return;
+
+    }
+
+
+    /* =================================================
+    QR NO PERTENECE A UN MAXISACO
+    ================================================= */
+
+    if (!resultado.existe) {
+
+        mostrarMensaje(
+
+            `⚠️ ${idMaxisaco}<br><br>` +
+
+            `Este código no pertenece a un maxisaco.<br><br>` +
+
+            `${cantidadLeida} / ${cantidadEsperada}`,
+
+            false
+
+        );
+
+        return;
+
+    }
+
+
+    /* =================================================
+    QR VÁLIDO
+    ================================================= */
+
     codigosLeidos.push(idMaxisaco);
 
     cantidadLeida++;
 
-    ELEMENTOS.txtIdMaxisaco.value = idMaxisaco;
+    ELEMENTOS.txtIdMaxisaco.value =
+        idMaxisaco;
+
 
     mostrarMensaje(
+
+        `✅ Maxisaco registrado.<br><br>` +
 
         `${cantidadLeida} / ${cantidadEsperada}`,
 
@@ -554,23 +622,33 @@ function codigoDetectado(idMaxisaco) {
 
     );
 
-    if (cantidadLeida === cantidadEsperada) {
 
-    mostrarMensaje(
-        "�� Enviando registros...",
-        true
-    );
+    /* =================================================
+    COMPROBAR SI TERMINÓ LA LECTURA
+    ================================================= */
 
-    detenerScanner()
+    if (
+        cantidadLeida === cantidadEsperada
+    ) {
 
-        .then(function () {
+        mostrarMensaje(
 
-            enviarTodosLosRegistros();
+            "📤 Enviando registros...",
 
-        });
+            true
 
-}
+        );
 
+
+        detenerScanner()
+
+            .then(function () {
+
+                enviarTodosLosRegistros();
+
+            });
+
+    }
 
 }
 
