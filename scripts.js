@@ -185,6 +185,8 @@ return {
 
     ok: false,
 
+    tipo: datos.tipo,
+
     id: idMaxisaco,
 
     mensaje: datos.mensaje
