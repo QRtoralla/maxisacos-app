@@ -198,6 +198,8 @@ return {
         return {
 
         ok: false,
+           tipo: "ERROR_CONEXION", 
+           /*ESTO PERMITE DISTINGUIR POSTERIORMENTE DE UN PROBLEMA DE CONEXIÓN DE UN MAXI OBSOLETO*/
 
         id: idMaxisaco,
 
@@ -274,86 +276,246 @@ async function verificarMaxisaco(idMaxisaco) {
 
 /* ENVIAR TODOS LOS REGISTROS */
 
+```javascript
+/* =====================================================
+   ENVIAR TODOS LOS REGISTROS
+   ===================================================== */
+
 async function enviarTodosLosRegistros() {
 
-   const resultados = [];
+    const resultados = [];
+
+
+    /* =================================================
+       ENVIAR CADA MAXISACO
+    ================================================= */
 
     for (const idMaxisaco of codigosLeidos) {
 
         const resultado =
-           await enviarRegistro(idMaxisaco);
+            await enviarRegistro(idMaxisaco);
 
-       resultados.push(resultado);
-
-    }
-
-   let enviados = 0;
-   let advertencias = 0;
-   let listaObsoletos = "";
-   
-
- // Aquí seguirá el siguiente bloque
-
-for (const resultado of resultados) {
-
-    if (resultado.ok) {
-
-        enviados++;
+        resultados.push(resultado);
 
     }
 
-    else {
 
-        advertencias++;
+    /* =================================================
+       CONTADORES
+    ================================================= */
 
-        listaObsoletos +=
-            `⚠️ ${resultado.id} alcanzó el máximo de 5 vueltas.<br><br>`;
+    let enviados = 0;
+
+    let obsoletos = 0;
+
+    let noExisten = 0;
+
+    let erroresConexion = 0;
+
+    let otrosErrores = 0;
+
+
+    /* =================================================
+       LISTAS
+    ================================================= */
+
+    let listaObsoletos = "";
+
+    let listaNoExisten = "";
+
+    let listaErroresConexion = "";
+
+    let listaOtrosErrores = "";
+
+
+    /* =================================================
+       CLASIFICAR RESULTADOS
+    ================================================= */
+
+    for (const resultado of resultados) {
+
+
+        /* ---------------------------------------------
+           REGISTRO CORRECTO
+        --------------------------------------------- */
+
+        if (resultado.tipo === "REGISTRADO") {
+
+            enviados++;
+
+        }
+
+
+        /* ---------------------------------------------
+           MAXIMO DE 5 VUELTAS
+        --------------------------------------------- */
+
+        else if (
+            resultado.tipo === "MAXIMO_VUELTAS"
+        ) {
+
+            obsoletos++;
+
+            listaObsoletos +=
+                `⚠️ ${resultado.id}<br>`;
+
+        }
+
+
+        /* ---------------------------------------------
+           CODIGO INEXISTENTE
+        --------------------------------------------- */
+
+        else if (
+            resultado.tipo === "NO_EXISTE"
+        ) {
+
+            noExisten++;
+
+            listaNoExisten +=
+                `❌ ${resultado.id}<br>`;
+
+        }
+
+
+        /* ---------------------------------------------
+           ERROR DE CONEXION
+        --------------------------------------------- */
+
+        else if (
+            resultado.tipo === "ERROR_CONEXION"
+        ) {
+
+            erroresConexion++;
+
+            listaErroresConexion +=
+                `🌐 ${resultado.id}<br>`;
+
+        }
+
+
+        /* ---------------------------------------------
+           OTRO ERROR
+        --------------------------------------------- */
+
+        else {
+
+            otrosErrores++;
+
+            listaOtrosErrores +=
+                `❌ ${resultado.id}: ${resultado.mensaje || "Error desconocido"}<br>`;
+
+        }
 
     }
 
-}
 
-   /*en el codigo anterior no mostrará nada, solo contará:
+    /* =================================================
+       CONSTRUIR RESUMEN
+       ================================================= */
 
-Cuántos registros fueron exitosos.
-Cuántas advertencias hubo.
-Qué maxisacos quedaron obsoletos.*/
+    let mensaje =
 
-   /*------------------------------------------------------------------*/
-   let mensaje =
+        "==============================<br><br>" +
 
-    "==============================<br><br>" +
+        "✅ Lectura completada<br><br>" +
 
-    "✅ Lectura completada<br><br>" +
-
-    `Registros enviados: ${enviados}<br><br>` +
-
-    `Advertencias: ${advertencias}<br><br>` +
-
-    "────────────────────────<br><br>";
+        `Registros enviados: ${enviados}<br><br>`;
 
 
-if (advertencias > 0) {
+    /* =================================================
+       MAXISACOS OBSOLETOS
+    ================================================= */
 
-    mensaje +=
+    if (obsoletos > 0) {
 
-        listaObsoletos +
+        mensaje +=
 
-        "Se recomienda retirarlo de circulación.";
+            `⚠️ Maxisacos obsoletos: ${obsoletos}<br><br>` +
 
-}
+            listaObsoletos +
+
+            "<br>" +
+
+            "Se recomienda retirarlos de circulación.<br><br>";
+
+    }
 
 
-mostrarMensaje(
+    /* =================================================
+       CODIGOS INEXISTENTES
+    ================================================= */
 
-    mensaje,
+    if (noExisten > 0) {
 
-    advertencias === 0
+        mensaje +=
 
-);
+            `❌ Códigos inexistentes: ${noExisten}<br><br>` +
 
-   /*-----------------------------------------------------------*/
-   
+            listaNoExisten +
+
+            "<br>";
+
+    }
+
+
+    /* =================================================
+       ERRORES DE CONEXION
+    ================================================= */
+
+    if (erroresConexion > 0) {
+
+        mensaje +=
+
+            `🌐 Errores de conexión: ${erroresConexion}<br><br>` +
+
+            listaErroresConexion +
+
+            "<br>";
+
+    }
+
+
+    /* =================================================
+       OTROS ERRORES
+    ================================================= */
+
+    if (otrosErrores > 0) {
+
+        mensaje +=
+
+            `❌ Otros errores: ${otrosErrores}<br><br>` +
+
+            listaOtrosErrores +
+
+            "<br>";
+
+    }
+
+
+    /* =================================================
+       MOSTRAR RESUMEN
+    ================================================= */
+
+    const huboErrores =
+        obsoletos > 0 ||
+        noExisten > 0 ||
+        erroresConexion > 0 ||
+        otrosErrores > 0;
+
+
+    mostrarMensaje(
+
+        mensaje,
+
+        !huboErrores
+
+    );
+
+
+    /* =================================================
+       LIMPIAR SESION
+    ================================================= */
 
     codigosLeidos = [];
 
@@ -362,6 +524,7 @@ mostrarMensaje(
     cantidadLeida = 0;
 
 }
+
 
 
 
