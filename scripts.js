@@ -529,7 +529,17 @@ async function codigoDetectado(idMaxisaco) {
 
     idMaxisaco = String(idMaxisaco).trim();
 
+   /* =================================================
+       EVITAR MÚLTIPLES LECTURAS SIMULTÁNEAS
+    ================================================= */
 
+    if (lecturaEnProceso) {
+
+        return;
+
+    }
+
+   
     /* =================================================
     COMPROBAR SI YA FUE LEÍDO
     ================================================= */
@@ -549,6 +559,15 @@ async function codigoDetectado(idMaxisaco) {
 
     }
 
+    /* =================================================
+       BLOQUEAR NUEVAS LECTURAS
+    ================================================= */
+
+    lecturaEnProceso = true;
+
+
+    try {
+   
 
     /* =================================================
     VERIFICAR SI EL QR PERTENECE A UN MAXISACO
@@ -631,6 +650,8 @@ async function codigoDetectado(idMaxisaco) {
         cantidadLeida === cantidadEsperada
     ) {
 
+       lecturaFinalizada = true;
+
         mostrarMensaje(
 
             "📤 Enviando registros...",
@@ -651,6 +672,30 @@ async function codigoDetectado(idMaxisaco) {
     }
 
 }
+
+   catch (error) {
+
+        console.error(error);
+
+        mostrarMensaje(
+
+            "❌ Ocurrió un error durante la validación.",
+
+            false
+
+        );
+
+    }
+
+    finally {
+
+        lecturaEnProceso = false;
+
+    }
+
+}
+
+   
 
 
 /* =====================================================
