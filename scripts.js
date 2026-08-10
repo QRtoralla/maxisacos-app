@@ -59,6 +59,8 @@ let codigosLeidos = [];
 
 let lecturaFinalizada = false;
 
+let lecturaEnProceso = false;
+
 
 /* =====================================================
    INICIALIZACIÓN
