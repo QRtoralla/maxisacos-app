@@ -171,6 +171,8 @@ async function enviarRegistro(idMaxisaco) {
 
         ok: true,
 
+        tipo: datos.tipo,
+
         id: datos.id,
 
         vueltas: datos.vueltas
