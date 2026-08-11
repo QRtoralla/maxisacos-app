@@ -770,7 +770,7 @@ async function codigoDetectado(idMaxisaco) {
 
         mostrarMensaje(
 
-            `⚠️ ${idMaxisaco}<br><br>` +
+            `⚠️ QR no válido<br><br>` +
 
             `Este código no pertenece a un maxisaco.<br><br>` +
 
