@@ -438,7 +438,7 @@ async function enviarTodosLosRegistros() {
 
             "<br>" +
 
-            "Se recomienda retirarlos de circulación.<br><br>";
+            "Se recomienda retirar estos maxisacos de circulación.<br><br>";
 
     }
 
