@@ -733,6 +733,7 @@ async function codigoDetectado(idMaxisaco) {
 
 
     try {
+    
    
 
     /* =================================================
@@ -761,7 +762,7 @@ async function codigoDetectado(idMaxisaco) {
 
     }
 
-
+    
     /* =================================================
     QR NO PERTENECE A UN MAXISACO
     ================================================= */
@@ -782,8 +783,35 @@ async function codigoDetectado(idMaxisaco) {
 
         return;
 
-    }
+    }     
 
+       /*detección de las 5 vueltas*/
+
+       /* =================================================
+   1B-1 — MAXISACO AGOTADO
+================================================= */
+
+if (resultado.vueltas >= 5) {
+
+    mostrarMensaje(
+
+        `⚠️ Maxisaco agotado.<br><br>` +
+
+        `${idMaxisaco} tiene ${resultado.vueltas} vueltas.<br><br>` +
+
+        `${cantidadLeida} / ${cantidadEsperada}`,
+
+        false
+
+    );
+
+    return;
+
+}
+       
+
+
+       
 
     /* =================================================
     QR VÁLIDO
