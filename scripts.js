@@ -76,6 +76,8 @@ let lecturaFinalizada = false;
 
 let lecturaEnProceso = false;
 
+let modalMaxisacoAbierto = false;
+
 
 /* =====================================================
    INICIALIZACIÓN
@@ -711,7 +713,7 @@ async function codigoDetectado(idMaxisaco) {
     idMaxisaco = String(idMaxisaco).trim();
 
    /* =================================================
-       EVITAR MÚLTIPLES LECTURAS SIMULTÁNEAS
+       Return (ignora acciones)
     ================================================= */
 
     if (lecturaEnProceso) {
@@ -719,6 +721,12 @@ async function codigoDetectado(idMaxisaco) {
         return;
 
     }
+
+   if (modalMaxisacoAbierto) {
+
+    return;
+
+}
 
    
     /* =================================================
@@ -814,6 +822,8 @@ if (resultado.vueltas >= 5) {
 
         `Ha alcanzado el límite permitido.`;
 
+    modalMaxisacoAbierto = true;
+   
     ELEMENTOS.modalMaxisaco.style.display = "flex";
 
     return;
