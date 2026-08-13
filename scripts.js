@@ -36,9 +36,24 @@ const ELEMENTOS = {
         document.getElementById("mensajeEstado"),
 
     contenedorScanner:
-        document.getElementById("contenedorScanner")
+        document.getElementById("contenedorScanner"),
+
+       modalMaxisaco:
+        document.getElementById("modalMaxisaco"),
+
+    mensajeModalMaxisaco:
+        document.getElementById("mensajeModalMaxisaco"),
+
+    btnEnviarObsoleto:
+        document.getElementById("btnEnviarObsoleto"),
+
+    btnContinuarEscaneo:
+        document.getElementById("btnContinuarEscaneo")
+
 
 };
+
+
 
 
 /* =====================================================
@@ -788,22 +803,18 @@ async function codigoDetectado(idMaxisaco) {
        /*detección de las 5 vueltas*/
 
        /* =================================================
-   1B-1 — MAXISACO AGOTADO
+   1B-2.3 — MOSTRAR MODEL MAXISACO AGOTADO
 ================================================= */
 
 if (resultado.vueltas >= 5) {
 
-    mostrarMensaje(
-
-        `⚠️ Maxisaco agotado.<br><br>` +
+    ELEMENTOS.mensajeModalMaxisaco.innerHTML =
 
         `${idMaxisaco} tiene ${resultado.vueltas} vueltas.<br><br>` +
 
-        `${cantidadLeida} / ${cantidadEsperada}`,
+        `Ha alcanzado el límite permitido.`;
 
-        false
-
-    );
+    ELEMENTOS.modalMaxisaco.style.display = "flex";
 
     return;
 
