@@ -78,6 +78,9 @@ let lecturaEnProceso = false;
 
 let modalMaxisacoAbierto = false;
 
+let maxisacoObsoletoPendiente = null; 
+/*Para recordar que ese QR que el operador esta diciendodo enviar*/
+
 
 /* =====================================================
    INICIALIZACIÓN
@@ -106,6 +109,13 @@ function inicializarAplicacion() {
         "click",
         continuarConElEscaneo
     );
+
+   ELEMENTOS.btnEnviarObsoleto.addEventListener(
+    "click",
+    enviarObsoleto
+);
+
+   
    
 
 }
@@ -119,6 +129,96 @@ function continuarConElEscaneo() {
     ELEMENTOS.modalMaxisaco.style.display = "none";
 
     modalMaxisacoAbierto = false;
+
+}
+
+/* =====================================================
+   ENVIAR MAXISACO OBSOLETO
+===================================================== */
+
+function enviarObsoleto() {
+
+    if (!maxisacoObsoletoPendiente) {
+
+        return;
+
+    }
+
+
+    const idMaxisaco =
+        maxisacoObsoletoPendiente;
+
+
+    /* =================================================
+       INCORPORAR EL MAXISACO A LA SESIÓN
+    ================================================= */
+
+    codigosLeidos.push(idMaxisaco);
+
+    cantidadLeida++;
+
+
+    ELEMENTOS.txtIdMaxisaco.value =
+        idMaxisaco;
+
+
+    /* =================================================
+       CERRAR MODAL
+    ================================================= */
+
+    ELEMENTOS.modalMaxisaco.style.display =
+        "none";
+
+    modalMaxisacoAbierto = false;
+
+    maxisacoObsoletoPendiente = null;
+
+
+    /* =================================================
+       MOSTRAR PROGRESO
+    ================================================= */
+
+    mostrarMensaje(
+
+        `⚠️ ${idMaxisaco} será enviado.<br><br>` +
+
+        `El maxisaco conserva sus 5 vueltas.<br><br>` +
+
+        `${cantidadLeida} / ${cantidadEsperada}`,
+
+        false
+
+    );
+
+
+    /* =================================================
+       COMPROBAR SI TERMINÓ LA LECTURA
+    ================================================= */
+
+    if (
+        cantidadLeida === cantidadEsperada
+    ) {
+
+        lecturaFinalizada = true;
+
+        mostrarMensaje(
+
+            "📤 Enviando registros...",
+
+            true
+
+        );
+
+
+        detenerScanner()
+
+            .then(function () {
+
+                enviarTodosLosRegistros();
+
+            });
+
+    }
 
 }
 
@@ -839,6 +939,8 @@ if (resultado.vueltas >= 5) {
         `${idMaxisaco} tiene ${resultado.vueltas} vueltas.<br><br>` +
 
         `Ha alcanzado el límite permitido.`;
+
+   maxisacoObsoletoPendiente = idMaxisaco;
 
     modalMaxisacoAbierto = true;
    
