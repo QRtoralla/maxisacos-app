@@ -102,6 +102,24 @@ function inicializarAplicacion() {
         iniciarScanner
     );
 
+   ELEMENTOS.btnContinuarEscaneo.addEventListener(
+        "click",
+        continuarConElEscaneo
+    );
+   
+
+}
+
+/* =====================================================
+   CONTINUAR CON EL ESCANEO
+===================================================== */
+
+function continuarConElEscaneo() {
+
+    ELEMENTOS.modalMaxisaco.style.display = "none";
+
+    modalMaxisacoAbierto = false;
+
 }
 
 
