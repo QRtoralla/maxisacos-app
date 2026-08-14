@@ -94,12 +94,12 @@ document.addEventListener("DOMContentLoaded", inicializarAplicacion);
 ===================================================== */
 
 function inicializarAplicacion() {
-
+/*
     ELEMENTOS.btnRegistrar.addEventListener(
         "click",
         registrarMaxisaco
     );
-
+*/
     ELEMENTOS.btnEscanear.addEventListener(
         "click",
         iniciarScanner
@@ -226,7 +226,7 @@ function enviarObsoleto() {
 /* =====================================================
    REGISTRAR MANUALMENTE
 ===================================================== */
-
+/*
 function registrarMaxisaco() {
 
     const idMaxisaco = obtenerIdMaxisaco();
@@ -245,20 +245,20 @@ function registrarMaxisaco() {
     enviarRegistro(idMaxisaco);
    
 }
-
+*/
 
 
 
 /* =====================================================
-   OBTENER ID
+   OBTENER ID | esta relacionada con el registro manual
 ===================================================== */
-
+/*
 function obtenerIdMaxisaco() {
 
     return ELEMENTOS.txtIdMaxisaco.value.trim();
 
 }
-
+*/
 
 /* =====================================================
    ENVIAR REGISTRO
