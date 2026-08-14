@@ -414,7 +414,7 @@ async function verificarMaxisaco(idMaxisaco) {
 /*el codigo anterior en parte sirve para dejar preparada la comunicacion de github y appscript*/
 
 /* =====================================================
-   ENVIAR TODOS LOS REGISTROS
+   ENVIAR TODOS LOS REGISTROS| 
    ===================================================== */
 
 async function enviarTodosLosRegistros() {
@@ -955,7 +955,7 @@ if (resultado.vueltas >= 5) {
        
 
     /* =================================================
-    QR VÁLIDO
+    QR VÁLIDO, solo prepara el registro para el envio
     ================================================= */
 
     codigosLeidos.push(idMaxisaco);
