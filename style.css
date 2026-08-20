@@ -147,7 +147,7 @@ button{
 #btnEscanear{
 
     background:#2E7D32;
-
+    justify-content: center;
     color:white;
 
 }
@@ -155,13 +155,13 @@ button{
 #btnEscanear:hover{
 
     background:#1B5E20;
-
+    
 }
 
 .scanner{
 
     margin-top:25px;
-    justify-content: center;
+    
 
 }
 
