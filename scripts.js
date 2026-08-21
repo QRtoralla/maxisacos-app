@@ -697,9 +697,11 @@ function mostrarMensaje(texto, correcto) {
 
 function limpiarFormulario() {
 
-    ELEMENTOS.txtIdMaxisaco.value = "";
+    if (ELEMENTOS.txtIdMaxisaco) {
 
-    ELEMENTOS.txtIdMaxisaco.focus();
+        ELEMENTOS.txtIdMaxisaco.value = "";
+
+    }
 
 }
 
