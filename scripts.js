@@ -157,10 +157,12 @@ function enviarObsoleto() {
 
     cantidadLeida++;
 
-
+   
+/* parte del label que decia ejemplo: ms01
+al habilitar estas dos lineas pasaba la lectura al utilizar el scanner y no dejaba enviar
     ELEMENTOS.txtIdMaxisaco.value =
         idMaxisaco;
-
+*/
 
     /* =================================================
        CERRAR MODAL
