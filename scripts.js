@@ -964,9 +964,10 @@ if (resultado.vueltas >= 5) {
 
     cantidadLeida++;
 
+       /*
     ELEMENTOS.txtIdMaxisaco.value =
         idMaxisaco;
-
+*/
 
     mostrarMensaje(
 
