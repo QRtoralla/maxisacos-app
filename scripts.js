@@ -210,34 +210,6 @@ function enviarObsoleto() {
 
 
 /* =====================================================
-   REGISTRAR MANUALMENTE
-===================================================== */
-/*
-function registrarMaxisaco() {
-
-    const idMaxisaco = obtenerIdMaxisaco();
-
-    if (!idMaxisaco) {
-
-        mostrarMensaje(
-            "Ingrese un código.",
-            false
-        );
-
-        return;
-
-    }
-
-    enviarRegistro(idMaxisaco);
-   
-}
-*/
-
-
-
-
-
-/* =====================================================
    ENVIAR REGISTRO
 ===================================================== */
 
