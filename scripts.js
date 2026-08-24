@@ -22,13 +22,13 @@ const CONFIG = {
 ===================================================== */
 
 const ELEMENTOS = {
-
+/*
     txtIdMaxisaco:
         document.getElementById("idMaxisaco"),
 
     btnRegistrar:
         document.getElementById("btnRegistrar"),
-
+*/
     btnEscanear:
         document.getElementById("btnEscanear"),
 
