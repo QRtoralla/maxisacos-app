@@ -276,9 +276,9 @@ async function enviarRegistro(idMaxisaco) {
         const datos = JSON.parse(texto);
 
         if (datos.ok) {
-
+/*
     limpiarFormulario();
-
+*/
     return {
 
         ok: true,
