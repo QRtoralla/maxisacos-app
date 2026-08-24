@@ -22,13 +22,7 @@ const CONFIG = {
 ===================================================== */
 
 const ELEMENTOS = {
-/*
-    txtIdMaxisaco:
-        document.getElementById("idMaxisaco"),
 
-    btnRegistrar:
-        document.getElementById("btnRegistrar"),
-*/
     btnEscanear:
         document.getElementById("btnEscanear"),
 
@@ -94,12 +88,7 @@ document.addEventListener("DOMContentLoaded", inicializarAplicacion);
 ===================================================== */
 
 function inicializarAplicacion() {
-/*
-    ELEMENTOS.btnRegistrar.addEventListener(
-        "click",
-        registrarMaxisaco
-    );
-*/
+
     ELEMENTOS.btnEscanear.addEventListener(
         "click",
         iniciarScanner
@@ -157,12 +146,7 @@ function enviarObsoleto() {
 
     cantidadLeida++;
 
-   
-/* parte del label que decia ejemplo: ms01
-al habilitar estas dos lineas pasaba la lectura al utilizar el scanner y no dejaba enviar
-    ELEMENTOS.txtIdMaxisaco.value =
-        idMaxisaco;
-*/
+
 
     /* =================================================
        CERRAR MODAL
@@ -251,16 +235,7 @@ function registrarMaxisaco() {
 
 
 
-/* =====================================================
-   OBTENER ID | esta relacionada con el registro manual
-===================================================== */
-/*
-function obtenerIdMaxisaco() {
 
-    return ELEMENTOS.txtIdMaxisaco.value.trim();
-
-}
-*/
 
 /* =====================================================
    ENVIAR REGISTRO
@@ -692,21 +667,6 @@ function mostrarMensaje(texto, correcto) {
 
 
 /* =====================================================
-   LIMPIAR FORMULARIO
-===================================================== */
-
-function limpiarFormulario() {
-
-    if (ELEMENTOS.txtIdMaxisaco) {
-
-        ELEMENTOS.txtIdMaxisaco.value = "";
-
-    }
-
-}
-
-
-/* =====================================================
    SCANNER QR
 
 ===================================================== */
@@ -966,10 +926,7 @@ if (resultado.vueltas >= 5) {
 
     cantidadLeida++;
 
-       /*
-    ELEMENTOS.txtIdMaxisaco.value =
-        idMaxisaco;
-*/
+
 
     mostrarMensaje(
 
@@ -1065,7 +1022,6 @@ function detenerScanner() {
         });
 
 }
-
 
 /* =====================================================
    IGNORAR ERRORES DE LECTURA
