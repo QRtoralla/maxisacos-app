@@ -32,6 +32,10 @@ const ELEMENTOS = {
     contenedorScanner:
         document.getElementById("contenedorScanner"),
 
+   /*elemento para el flash*/
+   btnFlash:
+    document.getElementById("btnFlash"),
+
        modalMaxisaco:
         document.getElementById("modalMaxisaco"),
 
@@ -94,6 +98,12 @@ function inicializarAplicacion() {
         iniciarScanner
     );
 
+   /*agregar eventos en elementos
+   ELEMENTOS.btnFlash.addEventListener(
+    "click",
+    alternarFlash
+);
+*/
    ELEMENTOS.btnContinuarEscaneo.addEventListener(
         "click",
         continuarConElEscaneo
@@ -638,8 +648,74 @@ function mostrarMensaje(texto, correcto) {
 }
 
 
+
+
 /* =====================================================
-   SCANNER QR
+   COMPROBAR SOPORTE DE FLASH
+===================================================== */
+
+function comprobarSoporteFlash() {
+
+    try {
+
+        const capacidades =
+            scannerQR.getRunningTrackCameraCapabilities();
+
+        if (
+            capacidades
+                .torchFeature()
+                .isSupported()
+        ) {
+
+            ELEMENTOS.btnFlash.style.display =
+                "block";
+
+            console.log(
+                "🔦 Flash compatible."
+            );
+
+        }
+
+        else {
+
+            ELEMENTOS.btnFlash.style.display =
+                "none";
+
+            console.log(
+                "🔦 Flash no compatible."
+            );
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "No se pudo comprobar el flash:",
+            error
+        );
+
+        ELEMENTOS.btnFlash.style.display =
+            "none";
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   INICIAR SCANNER QR
 
 ===================================================== */
 
@@ -705,7 +781,7 @@ function iniciarScanner() {
 
 
     {
-
+   
         facingMode: "environment"
 
     },
@@ -734,6 +810,11 @@ function iniciarScanner() {
 
 )
 
+      .then(function () {
+      comprobarSoporteFlash();
+   
+      })
+       
     .catch(function (error) {
 
         scannerActivo = false;
@@ -964,7 +1045,6 @@ if (resultado.vueltas >= 5) {
 
 }
 
-   
 
 
 /* =====================================================
