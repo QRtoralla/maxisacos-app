@@ -1117,7 +1117,12 @@ function detenerScanner() {
 
             scannerActivo = false;
 
+           flashActivo = false;
+
             ELEMENTOS.contenedorScanner.style.display =
+                "none";
+
+           ELEMENTOS.btnFlash.style.display =
                 "none";
 
         });
