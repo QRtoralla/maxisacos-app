@@ -62,6 +62,8 @@ let scannerQR = null;
 
 let scannerActivo = false;
 
+let flashActivo = false;
+
 let cantidadEsperada = 0;
 
 let cantidadLeida = 0;
@@ -98,12 +100,8 @@ function inicializarAplicacion() {
         iniciarScanner
     );
 
-   /*agregar eventos en elementos
-   ELEMENTOS.btnFlash.addEventListener(
-    "click",
-    alternarFlash
-);
-*/
+   
+
    ELEMENTOS.btnContinuarEscaneo.addEventListener(
         "click",
         continuarConElEscaneo
@@ -114,8 +112,11 @@ function inicializarAplicacion() {
     enviarObsoleto
 );
 
-   
-   
+   /*agregar eventos en elementos*/
+   ELEMENTOS.btnFlash.addEventListener(
+    "click",
+    alternarFlash
+);
 
 }
 
@@ -703,6 +704,54 @@ function comprobarSoporteFlash() {
 
 }
 
+
+
+/* =====================================================
+   ACTIVAR / DESACTIVAR FLASH
+===================================================== */
+
+async function alternarFlash() {
+
+    if (!scannerQR || !scannerActivo) {
+
+        return;
+
+    }
+
+    try {
+
+        flashActivo = !flashActivo;
+
+        await scannerQR.applyVideoConstraints({
+
+            advanced: [
+                {
+                    torch: flashActivo
+                }
+            ]
+
+        });
+
+        console.log(
+            flashActivo
+                ? "🔦 Flash encendido."
+                : "🔦 Flash apagado."
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "No se pudo cambiar el estado del flash:",
+            error
+        );
+
+        flashActivo = false;
+
+    }
+
+}
 
 
 
