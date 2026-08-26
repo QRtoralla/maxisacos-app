@@ -645,6 +645,11 @@ function mostrarMensaje(texto, correcto) {
             "#C62828";
 
     }
+/*mostrar completo el mensaje al scanner*/
+       ELEMENTOS.mensajeEstado.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
 
 }
 
