@@ -36,7 +36,7 @@ body{
 
     max-width:420px;
 
-    background:#ffffff;
+    background-color: rgba(200, 200, 200, 0.4);
 
     padding:30px;
 
@@ -66,7 +66,7 @@ body{
 
 .subtitulo{
 
-    color:#666;
+    color:white;
 
     font-size:15px;
 
@@ -154,7 +154,7 @@ button{
 
 #btnEscanear{
 
-    background:#2E7D32;
+    background:#1763A6;
     
     color:white;
 
