@@ -391,3 +391,17 @@ button{
     margin: 15px auto 0;
 
 }
+
+.fondo {
+
+    background-size: cover;
+ width: 100%;
+
+    max-width: 100px;
+
+    height: auto;
+
+    display: block;
+
+    margin: 15px auto 0;
+}
