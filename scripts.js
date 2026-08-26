@@ -866,6 +866,17 @@ function iniciarScanner() {
 
       .then(function () {
       comprobarSoporteFlash();
+         
+/*deslizar pantalla antes de identificar*/
+         setTimeout(function () {
+
+        ELEMENTOS.mensajeEstado.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+    }, 300);
+         
    
       })
        
